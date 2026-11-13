@@ -73,7 +73,7 @@ default working size of 3,000 points per cloud:
 
 | Deformable step | Time | Speed-up |
 | --- | ---: | ---: |
-| Previous CPU implementation | 118.7 s | 1× |
+| pycpd (reference, CPU) | 118.7 s | 1× |
 | `torch-cpd`, CPU | 50.6 s | 2.3× |
 | `torch-cpd`, CUDA | **2.0 s** | **61×** |
 
@@ -108,12 +108,12 @@ The tests check what matters for a scientific tool, not only that the code runs:
 
 `torch-cpd` is the deformable stage of an automated 3D landmarking pipeline for CT-derived and
 surface-scanned bone. The pipeline combines segmentation, surface conditioning, multi-template
-landmark transfer and an uncertainty-ranked review queue. Leave-one-out validation on 13 fully
-annotated specimens (156 independent registrations against held-out, hand-placed landmarks)
-gave these results:
+landmark transfer and an uncertainty-ranked review queue. In an early leave-one-out benchmark
+on 13 fully annotated specimens (156 independent registrations against held-out, hand-placed
+landmarks):
 
-- Multi-template consensus lowered mean landmark error by **49%** compared with a single-template
-  rigid baseline.
+- Mean landmark error fell from **11.38 mm** with one deformable template to **5.86 mm** with
+  12-template consensus.
 - This PyTorch stage matched the reference implementation to about **one millionth of the
   object's size**.
 
