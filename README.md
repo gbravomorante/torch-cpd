@@ -127,6 +127,12 @@ repository if you wish (see [`CITATION.cff`](CITATION.cff)):
 > Myronenko, A., & Song, X. (2010). Point Set Registration: Coherent Point Drift.
 > *IEEE TPAMI*, 32(12), 2262–2275.
 
+## Feedback and contributions
+
+Bug reports and questions are welcome as [GitHub issues](https://github.com/gbravomorante/torch-cpd/issues).
+For a pull request, please open an issue first for anything beyond a small fix, and make sure
+`pytest && ruff check .` passes.
+
 ## License
 
 [MIT](LICENSE) © Guillermo Bravo Morante · [gbravomorante.dev](https://gbravomorante.dev)
