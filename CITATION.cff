@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, together with Myronenko & Song (2010)."
+title: "torch-cpd: non-rigid Coherent Point Drift on CPU or GPU with PyTorch"
+authors:
+  - family-names: "Bravo Morante"
+    given-names: "Guillermo"
+    orcid: "https://orcid.org/0000-0002-1544-9279"
+version: 0.1.0
+date-released: 2026-11-13
+license: MIT
+repository-code: "https://github.com/gbravomorante/torch-cpd"
+references:
+  - type: article
+    authors:
+      - family-names: "Myronenko"
+        given-names: "Andriy"
+      - family-names: "Song"
+        given-names: "Xubo"
+    title: "Point Set Registration: Coherent Point Drift"
+    journal: "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    volume: 32
+    issue: 12
+    start: 2262
+    end: 2275
+    year: 2010
+    doi: "10.1109/TPAMI.2010.46"

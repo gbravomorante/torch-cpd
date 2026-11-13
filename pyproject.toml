@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "torch-cpd"
+version = "0.1.0"
+description = "Non-rigid Coherent Point Drift on CPU or GPU with PyTorch"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Guillermo Bravo Morante" }]
+requires-python = ">=3.10"
+keywords = ["point cloud", "registration", "coherent point drift", "pytorch", "gpu", "morphometrics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = ["numpy>=1.24", "torch>=2.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pycpd>=2.0", "ruff>=0.6"]
+examples = ["matplotlib>=3.8"]
+
+[project.urls]
+Homepage = "https://gbravomorante.dev"
+Source = "https://github.com/gbravomorante/torch-cpd"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/torch_cpd"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741", "N806"]
