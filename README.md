@@ -69,17 +69,15 @@ consistent when the sampling density changes.
 ## Performance
 
 These numbers were measured inside the landmarking pipeline below on an RTX 4080 SUPER, at its
-default working size of 3,000 points per cloud:
+default working size of 3,000 points per cloud and 150 iterations. These timings cover the deformable registration step.
 
-| Deformable step | Time | Speed-up |
-| --- | ---: | ---: |
-| pycpd (reference, CPU) | 118.7 s | 1× |
-| `torch-cpd`, CPU | 50.6 s | 2.3× |
-| `torch-cpd`, CUDA | **2.0 s** | **61×** |
+| Deformable step | Time |
+| --- | ---: |
+| pycpd (reference, CPU) | 118.7 s |
+| `torch-cpd`, CPU | 50.6 s |
+| `torch-cpd`, CUDA | **about 2 s** |
 
-At that rate, an estimated 300-specimen registration batch drops from about 46 hours to about
-1.3 hours. Below about 400 points, transfer overhead cancels out the GPU's advantage, and
-`device="auto"` stays on the CPU.
+The end-to-end runtime also includes other pipeline stages. At small point counts, `device="auto"` can select the CPU to avoid GPU transfer overhead.
 
 To reproduce on your own hardware:
 
@@ -108,9 +106,7 @@ The tests check what matters for a scientific tool, not only that the code runs:
 
 `torch-cpd` is the deformable stage of an automated 3D landmarking pipeline for CT-derived and
 surface-scanned bone. The pipeline combines segmentation, surface conditioning, multi-template
-landmark transfer and an uncertainty-ranked review queue. In an early leave-one-out benchmark
-on 13 fully annotated specimens (156 independent registrations against held-out, hand-placed
-landmarks):
+landmark transfer and an uncertainty-ranked review queue. In the leave-one-out registration benchmark, each of 13 annotated specimens was held out in turn for comparison with hand-placed reference landmarks. This produced 156 template-to-target registrations.
 
 - Mean landmark error fell from **11.38 mm** with one deformable template to **5.86 mm** with
   12-template consensus.
